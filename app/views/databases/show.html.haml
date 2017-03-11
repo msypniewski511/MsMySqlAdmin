@@ -1,0 +1,5 @@
+%h3 Lista tabel w bazie: #{@database_name}
+%ul
+  -@tables_list.each do |table|
+    %li= table.values[0].to_s
+=link_to "Back", databases_path

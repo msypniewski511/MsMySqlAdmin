@@ -1,0 +1,12 @@
+%p= notice
+%h3
+  Formularz tworzenia nowej bazy
+%fieldset
+  %legend Formularz.
+  = form_tag(databases_path, method: "post") do
+    = label_tag(:name, "Podaj nazwe nowej bazy:")
+    %br
+    = text_field_tag(:name)
+    %br
+    = submit_tag("Utworz baze!")
+    %br

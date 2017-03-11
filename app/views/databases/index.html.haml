@@ -1,0 +1,24 @@
+%p= notice
+%h3 Dane serwera MySql
+- @version.each do |t|
+  = "Wersja: " + t.values[0].to_s
+%br
+- @user.each do |user_date|
+  = "Uzytkownik: " + user_date.values[0].to_s
+%br
+- @date.each do |data|
+  = "Data na serw: " + data.values.to_s
+%br
+-@teraz.each do |t|
+  =t.values[0].to_s
+%hr
+%h3 Lista baz na serwerze:
+%ul
+- @databases_list.each do |database|
+  %li
+    =link_to "#{database.values[0].to_s}", database_path(id: database.values[0].to_s)
+    =link_to "Usun baze", database_path(id: database.values[0].to_s), method: :delete, data: {confirm: "Are you sure?"}
+%hr
+%h3
+  =link_to "Nowa baza danych", new_database_path
+  
