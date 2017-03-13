@@ -1,0 +1,10 @@
+%p= notice
+%h3 List tables in database: #{@database_name}
+%table
+  %tr
+    %th Table name:
+    %th Action:
+  =render partial: 'shared/table', collection: @tables_list
+%hr
+=link_to "New table", new_database_table_path
+=link_to "Back", databases_path

@@ -1,0 +1,15 @@
+%h3 Records in table: #{params[:database_id]}
+- @records.each do |data|
+  - @datab = data
+- if (@datab == nil)
+  %h2 Empty table!
+- else
+  %table
+    %thead#table_description_head
+      %tr
+        -@datab.keys.each do |key|
+          %th= key
+      %tbody
+      =render(partial: 'record', collection: @records)
+      %hr
+=link_to "Back", database_tables_path

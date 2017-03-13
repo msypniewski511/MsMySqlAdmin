@@ -14,10 +14,7 @@
 %hr
 %h3 Lista baz na serwerze:
 %ul
-- @databases_list.each do |database|
-  %li
-    =link_to "#{database.values[0].to_s}", database_path(id: database.values[0].to_s)
-    =link_to "Usun baze", database_path(id: database.values[0].to_s), method: :delete, data: {confirm: "Are you sure?"}
+  =render(partial: 'database', collection: @databases_list)
 %hr
 %h3
   =link_to "Nowa baza danych", new_database_path

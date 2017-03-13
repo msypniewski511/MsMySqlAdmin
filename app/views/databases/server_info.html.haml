@@ -1,0 +1,20 @@
+%p= notice
+%h3 Server Metadata:
+- @version.each do |t|
+  = "Version: " + t.values[0].to_s
+%br
+- @user.each do |user_date|
+  = "User: " + user_date.values[0].to_s
+%br
+- @date.each do |data|
+  = "Data: " + data.values.to_s
+%br
+-@teraz.each do |t|
+  =t.values[0].to_s
+/%br
+/-@status.each do |s|
+/  =s.values
+/%br
+/-@variable.each do |variable|
+/  =variable.values
+%hr

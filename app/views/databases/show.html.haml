@@ -1,5 +1,12 @@
-%h3 Lista tabel w bazie: #{@database_name}
-%ul
-  -@tables_list.each do |table|
-    %li= table.values[0].to_s
+%h3 Database: #{params[:id]}
+%table
+  %tr
+    %th Database name:
+    %th Actions:
+  %tr
+    %td
+      =params[:id]
+    %td
+      =link_to "SHOW", database_tables_path(database_id: params[:id])
+      =link_to "DROP DATABASE", database_path(id: params[:id]), method: :delete, data:{confirm: 'Are you sure to delete the database' + "#{params[:id]}" + '?'}
 =link_to "Back", databases_path

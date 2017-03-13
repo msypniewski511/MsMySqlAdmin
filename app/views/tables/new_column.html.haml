@@ -1,0 +1,9 @@
+%h3 Add columns to the table: #{params[:id]}
+%fieldset
+  %legend Add new column
+  =form_tag(add_column_database_table_path) do
+    %p
+      =render(partial: 'field_form')
+    %p
+      = submit_tag("Create new column!")
+=link_to "Back", database_table_path

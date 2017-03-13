@@ -1,0 +1,11 @@
+%h3 New table in: #{params[:database_id]} database.
+%fieldset
+  %legend Add new table
+  =form_tag(database_tables_path) do
+    %p
+      = label_tag :name, "Table name:"
+      = text_field_tag :name
+    %br
+      =render(partial: 'field_form')
+    %p
+      = submit_tag("Create new table!")

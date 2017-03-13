@@ -1,0 +1,8 @@
+%tr
+  %td
+    /= link_to "#{table.values[0].to_s}", database_table_path(id: table.values[0].to_s})
+    /= link_to("Delete", database_table_path(id: "#{table.values[0].to_s}"))
+    =link_to("#{table.values[0].to_s}", database_table_path(id: "#{table.values[0].to_s}"))
+  %td
+    =link_to("Delete table!", database_table_path(id: "#{table.values[0].to_s}"), method: :delete, data: {confirm: "Are you sure ?"})
+    =link_to "Show records", show_records_database_table_path(id: "#{table.values[0].to_s}")

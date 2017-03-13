@@ -1,0 +1,3 @@
+%li
+  =link_to "#{database.values[0].to_s}", database_path(id: database.values[0].to_s)
+  =link_to "DROP DATABASE", database_path(id: database.values[0].to_s), method: :delete, data: {confirm: 'Are you sure to delete database: ' + database.values[0].to_s + '?'}

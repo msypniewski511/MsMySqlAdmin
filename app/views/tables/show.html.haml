@@ -1,0 +1,14 @@
+%h3 Describe of the table #{params[:id].to_s} in database: #{params[:database_id].to_s}
+%%table
+  %thead
+    %tr
+      %th Field
+      %th Type
+      %th Null
+      %th Key
+      %th Default
+      %th Extra
+  %tbody
+    = render partial: 'describe', collection: @describe
+= link_to "Add column", new_column_database_table_path
+= link_to "Back", database_tables_path
