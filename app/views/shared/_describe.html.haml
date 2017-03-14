@@ -1,0 +1,12 @@
+%tr
+  - i = 1
+  - describe.each do |key, value|
+    -if(i == 1)then
+      -@val = value
+    -i += 1
+    %td
+      =value
+  %td
+    =link_to "Show", database_table_column_path(id: "#{@val}")
+    =link_to "Edit", edit_database_table_column_path(id: "#{@val}")
+    =link_to "Delete", database_table_column_path(id: "#{@val}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{@val}" + "?"}

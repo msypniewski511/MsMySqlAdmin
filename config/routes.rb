@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   	collection do
   	  get 'server_info'
   	end
-    resources :tables do
+    resources :tables, except: [:update, :edit] do
       member do
         get 'show_records'
         get 'new_column'
         post 'add_column'
       end
+      resources :columns
     end
   end
 end

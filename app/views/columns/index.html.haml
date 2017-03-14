@@ -1,0 +1,15 @@
+%h3 Columns in table: [#{params[:table_id]}] in database: [#{params[:database_id]}]
+%table
+  %thead
+    %tr
+      %th Field
+      %th Type
+      %th Null
+      %th Key
+      %th Default
+      %th Extra
+      %th Actions:
+  %tbody
+    = render partial: 'shared/describe', collection: @describe
+= link_to "Add column", new_database_table_column_path
+=link_to "Back", database_table_path(id: params[:table_id])

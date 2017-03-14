@@ -1,7 +1,6 @@
 class DatabasesController < ApplicationController
-  skip_after_action :close_connection, only:[:show]
-  before_action :set_connection, expect: :show
-
+  after_action :close_connection, expect:[:show, :new]
+  before_action :set_connection, expect: [:show, :new]
   def server_info
     # information about server 
     begin

@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   require 'mysql2'
-  after_action :close_connection, except:[:new]
 
   
   private
@@ -20,9 +19,9 @@ class ApplicationController < ActionController::Base
   	@client.close()
   end
 
-  def use_database(database_name)
+  def use_database
   	set_parameters
-    @baza = Mysql2::Client.new(host: @host, username: @user, password: @password, database: database_name)
+    @baza = Mysql2::Client.new(host: @host, username: @user, password: @password, database: params[:database_id])
   end
 
   def close_database
