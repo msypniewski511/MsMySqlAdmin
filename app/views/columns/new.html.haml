@@ -4,6 +4,6 @@
   =form_tag(database_table_columns_path) do
     %p
       =render(partial: 'shared/column_form')
-    %p
+    %div.submit
       = submit_tag("Create new column!")
 =link_to "Back", database_table_columns_path

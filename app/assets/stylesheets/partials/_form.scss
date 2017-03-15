@@ -14,7 +14,7 @@ fieldset {
     margin-left: 10px;
   }
   div {
-    width: 460px;
+    width: 440px;
     text-align: left;
     margin: 10px auto;
     padding: 0 20px 10px 0;
@@ -26,9 +26,18 @@ fieldset {
     input {
       width: 200px;
       margin-left: 10px;
+      border-radius: 3px;
     }
   }
   div.field {    
       border-bottom: 1px solid blue;
+  }
+  div.submit {
+    width: 200px;
+    text-align: right;
+    color: blue;
+    button {
+      background-color: blue;
+    }
   }
 }
