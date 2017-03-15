@@ -1,0 +1,8 @@
+@mixin gradient($form_color, $to_color){
+  /*zastepczy kolor tla */
+  background-color: $form_color;
+  background-image: -moz-linear-gradient($to_color, $form_color);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($form_color), to($to_color));
+  background-image: -webkit-linear-gradient($to_color, $form_color);
+  background-image: -o-linear-gradient($to_color, $form_color);
+}

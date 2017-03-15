@@ -11,5 +11,6 @@
       %th Actions:
   %tbody
     = render partial: 'shared/describe', collection: @describe
-= link_to "Add column", new_database_table_column_path
-=link_to "Back", database_table_path(id: params[:table_id])
+%h3.action
+  =link_to(image_tag('add.png'), new_database_table_column_path)
+  =link_to "Add column", new_database_table_column_path

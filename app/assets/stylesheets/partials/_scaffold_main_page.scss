@@ -1,0 +1,43 @@
+/* float left the article section */
+section#main_content {
+  float: left;
+  width: 73%;
+}
+
+section#side_bar {
+  float: right;
+  width: 25%;
+  ul {
+    width: 100%;
+    li#database_list {
+      background-color: $back-color-li;
+      border: 1px solid blue;
+      border-radius: 5px;
+      padding: 2px 5px 2px 5px;
+      margin-bottom: 2px;
+    }
+    li#database_list:hover {
+      background-color: red;
+    }
+  }
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  a.delete {
+    float: right;
+  }
+  a:hover {
+    color: white;
+  }
+  h3.action a{
+    color: white;
+  }
+}
+/* clear floats on the footer to sits it at bottom of the page */
+footer#site_footer {
+  clear: both;
+  width: 100%;
+  display: block;
+  text-align: center;
+}

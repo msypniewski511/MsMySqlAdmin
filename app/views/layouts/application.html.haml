@@ -6,6 +6,33 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
+  %body{id: "#{params[:controller]}"}
+    / Begining of site header
+    %header#site_header
+      / Site navigation panel
+      %nav
+        %h2 MSypniewski
+        %ul.nav
+          %li
+            %a{href: "#"} MySql tutorial
+          %li
+            %a{href: "#"} JavaScript
+          %li
+            =link_to "MsMySqlAdmin", databases_path
+
     %p= notice
     = yield
+    / Main site footer
+    %footer#site_footer
+      %span= mail_to("msypniewski511@interia.pl", "Maciej Sypniewski", subject: "", encode: "javascript")
+      &copy; 2017
+      %nav
+        %ul.nav
+          %li
+            %a{href: "http://learn.jquery.com/"} JQuery learn
+          %li
+            %a{href: "http://www.w3schools.com/"} w3scools.com
+          %li
+            %a{href: "https://developer.mozilla.org/pl/"} Mozilla Developer
+          %li
+            %a{href: "https://www.tutorialspoint.com/"} tutorialspoint

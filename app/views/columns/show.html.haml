@@ -3,13 +3,15 @@
   %tr
     %th Attr
     %th Value
-    %th Action
+    %th
   -@column.each do |column|
     -column.each do |key, value|
       %tr
         %td= key
         %td= value
-        %td= link_to "Edit", href: "#"
-    %br
-=link_to "Delete", database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"}
-=link_to "Back", database_table_columns_path
+        %td=link_to(image_tag('stock-edit-16.png'), href: "#")
+  %tr
+    %td
+      =link_to(image_tag('stock-selection-none-16.png'), database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"})
+    %td
+    %td

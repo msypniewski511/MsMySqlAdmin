@@ -5,8 +5,7 @@
     %th Actions:
   %tr
     %td
-      =params[:id]
+      =link_to "#{params[:id]}", database_tables_path(database_id: params[:id])
     %td
-      =link_to "SHOW", database_tables_path(database_id: params[:id])
       =link_to "DROP DATABASE", database_path(id: params[:id]), method: :delete, data:{confirm: 'Are you sure to delete the database' + "#{params[:id]}" + '?'}
 =link_to "Back", databases_path

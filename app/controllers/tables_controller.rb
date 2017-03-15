@@ -28,7 +28,7 @@ class TablesController < ApplicationController
   # Craete new table in particular database.
   def create
   	begin
-  	  sql = "CREATE TABLE #{params[:name].to_s} (#{params[:column_name].to_s} #{params[:type].to_s})"
+  	  sql = "CREATE TABLE #{params[:name].to_s} (#{params[:field].to_s} #{params[:type].to_s})"
   	  @baza.query(sql)
   	  redirect_to :database_tables, notice: "New table #{params[:name].to_s} was created"
   	rescue Mysql2::Error => e

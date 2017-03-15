@@ -1,14 +1,19 @@
-%strong Field details:
-%div
-  =label_tag :field, "Field name:"
+%strong Column details:
+%div.field
+  =label_tag :field, "Column name:"
   =text_field_tag :field
-  =label_tag :type, "Field type:"
+%div.field
+  =label_tag :type, "Column type:"
   =text_field_tag :type
+%div.field
   =label_tag :null, "Null:"
   =text_field_tag :null
+%div.field
   =label_tag :key, "Key:"
   =text_field_tag :key
+%div.field
   =label_tag :default, "Default:"
   =text_field_tag :default
+%div.field
   =label_tag :extra, "Extra:"
   =text_field_tag :extra

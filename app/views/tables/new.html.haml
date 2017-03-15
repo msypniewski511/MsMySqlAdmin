@@ -2,10 +2,10 @@
 %fieldset
   %legend Add new table
   =form_tag(database_tables_path) do
-    %p
+    .field
       = label_tag :name, "Table name:"
       = text_field_tag :name
     %br
-      =render(partial: 'field_form')
-    %p
+      =render(partial: 'shared/column_form')
+    .submit
       = submit_tag("Create new table!")

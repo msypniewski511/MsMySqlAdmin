@@ -9,7 +9,11 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
  */
+ // CSS RESET
+@import "partials/reset.scss";
+@import "partials/table.scss";
+@import "partials/form.scss";
+@import "partials/colors.scss";
+@import "partials/main.scss";
+@import "partials/scaffold_main_page.scss";

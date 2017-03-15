@@ -1,0 +1,62 @@
+@import "partials/colors.scss";
+@import "partials/gradient.scss";
+@import "partials/_cross_browser_radius.scss";
+body {
+  background-color: $body-color-aqua;
+  width: 960px;
+  margin: 15px auto;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+  a {
+    text-decoration: none;
+  }
+}
+header, footer {
+  width: 100%;
+  @include gradient($darker-color-header, $lith-body-aqua);
+  @include rounded_borders(5px);
+  padding: 5px 0 5px 0;
+  margin: 5px 0 5px 0;
+  ul {
+    width: 100%;
+    list-style: none;
+    padding: 5px 0 15px 0;;
+    li {
+      display: block;
+      text-align: center;
+      width: 150px;
+      float: left;
+      border: 1px solid blue;
+      border-radius: 5px;
+      background-color: $nav-color-back;
+      margin: 0 10px 0 5px;
+    }
+    li:hover {
+      background-color: black;
+      color: red;
+    }
+  }
+  a {
+    color: #CCFFFF;
+  }
+}
+header.main_content_header {
+  @include gradient($lith-body-aqua, $darker-color-header);
+}
+h2 {
+  padding: 5px;
+  margin: 5px 0 5px 5px;
+  color: $h2-color;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+h3 {
+  @include gradient(blue, $darker-color-header);
+  @include rounded_borders(5px);
+  padding: 2px 0 2px 5px;
+  margin: 5px 0 5px 0;
+  font-weight: bolder;
+}
+h3.action a{
+  color: white;
+}

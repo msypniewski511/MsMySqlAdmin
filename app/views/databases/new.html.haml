@@ -4,9 +4,8 @@
 %fieldset
   %legend Formularz.
   = form_tag(databases_path, method: "post") do
-    = label_tag(:name, "Podaj nazwe nowej bazy:")
-    %br
-    = text_field_tag(:name)
-    %br
-    = submit_tag("Utworz baze!")
-    %br
+    %div.field
+      = label_tag(:name, "Name of new database:")
+      = text_field_tag(:name)
+    %div.submit
+      = submit_tag("Create database!")

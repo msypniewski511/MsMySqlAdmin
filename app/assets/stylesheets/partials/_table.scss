@@ -1,0 +1,40 @@
+/*************************************************************************
+**************************************************************************/
+@import "colors.scss";
+/* First, let’s get rid of the hideous default table border.*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid #66FFFF;
+  margin: 10px 0 10px 0;
+  color: $h2-color;
+  th, td {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  /*We’ll also style the header a bit by giving it a black background with white text.*/
+  th {
+    background-color: blue;
+    color: white;
+    text-align: left;
+  }
+  th:last-child {
+    border-top-right-radius: 7px;
+  }
+  th:first-child {
+    border-top-left-radius: 7px;
+  }
+  /* IMPOTANT in striping, without resorting to any scripting or extra class names on rows. */
+  tr:nth-of-type(even) {
+    background-color: #66FFFF;
+  }
+  tr:nth-of-type(odd){
+    background-color: $body-color-aqua;
+    border-right: 1px solid #66FFFF;
+    border-left: 1px solid #66FFFF;
+  }
+  th:last-child, td:last-child {
+    text-align: right;
+  }
+
+}
