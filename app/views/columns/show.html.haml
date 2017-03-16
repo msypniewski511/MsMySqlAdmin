@@ -9,9 +9,9 @@
       %tr
         %td= key
         %td= value
-        %td=link_to(image_tag('stock-edit-16.png'), href: "#")
+        %td=link_to(image_tag('stock-edit-16.png'), href: "#", remote: true)
   %tr
     %td
-      =link_to(image_tag('stock-selection-none-16.png'), database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"})
+      =link_to(image_tag('stock-selection-none-16.png'), database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"}, remote: true)
     %td
     %td

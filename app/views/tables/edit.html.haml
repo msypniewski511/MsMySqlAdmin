@@ -1,0 +1,16 @@
+%h3.form
+  = "Rename table: "
+  %span.table_name
+    ="#{params[:id]}" 
+  ="in database: "
+  %span.database_name
+    ="#{params[:database_id]}"
+%fieldset
+  %legend Rename table: #{params[:id]}
+  =form_tag(database_table_path, method: :put, remote: true) do
+    .field
+      =label_tag :new_name, "New name:"
+      =text_field_tag :new_name
+    .submit
+      =submit_tag('Rename table!')
+  

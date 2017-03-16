@@ -1,6 +1,6 @@
 %span
   %h3 
     Table: #{params[:id].to_s} in database: #{params[:database_id].to_s}
-    =link_to "Show", database_table_columns_path(table_id: params[:id])
+    =link_to "Show", database_table_columns_path(table_id: params[:id]), remote: true
     =link_to "Delete", database_table_path, method: :delete, data: {confirm: "Are you sure to delete table: " + "#{params[:id]} " + "?"}
 =link_to "Back", database_tables_path

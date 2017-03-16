@@ -14,13 +14,11 @@
         %h2 MSypniewski
         %ul.nav
           %li
-            %a{href: "#"} MySql tutorial
+            =link_to "MySql tutorial", main_index_path 
           %li
             %a{href: "#"} JavaScript
           %li
             =link_to "MsMySqlAdmin", databases_path
-
-    %p= notice
     = yield
     / Main site footer
     %footer#site_footer

@@ -4,7 +4,7 @@
   %article.main_content
     %header.main_content_header
       %h2 MsMysql adminstration panel.
-    %p= notice
+    %p.notice= notice
     %div#tables_in_database
     %div#table_description
     %div#table_records
@@ -27,17 +27,18 @@
   -@teraz.each do |t|
     =t.values[0].to_s
   %hr
-  %h3
+  %h3#lista_baz
     .up
       =image_tag("buttonDown_On.png")
       Databases list:
     .down
       =image_tag("buttonUp_On.png")
       Databases list:
-  %ul
-    =render(partial: 'database', collection: @databases_list)
+  .databases_list
+    %ul
+      =render(partial: 'database', collection: @databases_list)
   %hr
   %h3.action
-    =link_to(image_tag('add.png'), new_database_path)
-    =link_to "Nowa baza danych", new_database_path
+    =link_to(image_tag('add.png'), new_database_path, remote: true)
+    =link_to "Nowa baza danych", new_database_path, remote: true
   

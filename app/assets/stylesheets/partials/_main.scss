@@ -60,3 +60,12 @@ h3 {
 h3.action a{
   color: white;
 }
+h3.form {
+  @include gradient(#33FF99, $darker-color-header);
+}
+span.table_name {
+  color: red;
+}
+span.database_name {
+  color: orange;
+}

@@ -1,0 +1,6 @@
+$('p.notice').html('');
+$('div#tables_in_database').html('');
+$('div#table_description').html('');
+$('div#table_records').html('');
+$('div#forms_div').show();
+$('div#forms_div').html("<%=j render(file: 'databases/new.html.haml') %>");

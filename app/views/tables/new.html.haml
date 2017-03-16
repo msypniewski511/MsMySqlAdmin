@@ -1,7 +1,7 @@
-%h3 New table in: #{params[:database_id]} database.
+%h3.form New table in: #{params[:database_id]} database.
 %fieldset
   %legend Add new table
-  =form_tag(database_tables_path) do
+  =form_tag(database_tables_path, remote: true) do
     .field
       = label_tag :name, "Table name:"
       = text_field_tag :name

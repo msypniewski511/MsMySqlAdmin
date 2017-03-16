@@ -19,10 +19,10 @@ table {
     text-align: left;
   }
   th:last-child {
-    border-top-right-radius: 7px;
+    border-top-right-radius: 5px;
   }
   th:first-child {
-    border-top-left-radius: 7px;
+    border-top-left-radius: 5px;
   }
   /* IMPOTANT in striping, without resorting to any scripting or extra class names on rows. */
   tr:nth-of-type(even) {
@@ -36,5 +36,18 @@ table {
   th:last-child, td:last-child {
     text-align: right;
   }
-
+  tr:last-child {
+    background-color: blue;
+    text-align: left;
+    font-color: purple;
+    td:first-child {
+      border-bottom-left-radius: 5px;
+    }
+    td:last-child {
+      border-bottom-right-radius: 5px;
+    }
+    a {
+      color: $body-color-aqua;
+    }
+  }
 }

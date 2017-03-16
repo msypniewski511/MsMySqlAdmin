@@ -1,11 +1,14 @@
-%p= notice
 %h3 Tables list in database: #{@database_name}
 %table
   %tr
     %th Table name:
     %th Action:
   =render partial: 'shared/table', collection: @tables_list
+  %tr
+    %td.action
+      =link_to(image_tag('add_over.png'), new_database_table_path, remote: true)
+      =link_to "New table", new_database_table_path, remote: true
+    %td
 %hr
-%h3.action
-  =link_to(image_tag('add_over.png'), new_database_table_path)
-  =link_to "New table", new_database_table_path
+
+  

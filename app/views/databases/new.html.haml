@@ -3,7 +3,7 @@
   Formularz tworzenia nowej bazy
 %fieldset
   %legend Formularz.
-  = form_tag(databases_path, method: "post") do
+  = form_tag(databases_path, method: "post", remote: true) do
     %div.field
       = label_tag(:name, "Name of new database:")
       = text_field_tag(:name)

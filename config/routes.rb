@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   	collection do
   	  get 'server_info'
   	end
-    resources :tables, except: [:update, :edit] do
+    resources :tables do
       member do
         get 'show_records'
         get 'new_column'

@@ -1,2 +1,40 @@
-%h1 Main#index
-%p Find me in app/views/main/index.html.haml
+/Main contenet
+%section#main_content
+  /Article
+  %article.main_content
+    %header.main_content_header
+      %h2 MsMysql information panel.
+    %p.notice= notice
+    %div#tables_in_database
+    %ol
+      Connect to MySQL server remotly.
+      %li
+        1. Comment
+        %span.additional_color
+          bind-address
+        in 
+        %span.main_color
+          mysqld.cnf
+      %li
+        %span.main_color
+          2. GRANT ALL PRIVILEGES ON *.* TO 'nickruiz'@'%' IDENTIFIED BY PASSWORD 'xxxx';
+      %li
+        3. Set port forwarding on router (TCP and UDP, port 3306, 192.168.1.3)
+      %li
+        4. Configure iptables for firewall
+        %br
+        %span.additional_color
+          sudo iptables -I INPUT -p udp --dport 3306 -j ACCEPT
+          %br
+          sudo iptables -I INPUT -p tcp --dport 3306 --syn -j ACCEPT
+          %br
+          sudo iptables-save
+      %li
+        5. Restart mysql server sudo /etc/init.d/mysql restart
+    %p
+      To connect from remote:
+      %span.additional_color
+        mysql -h 192.168.1.3 -u user -p
+    %div#table_description
+    %div#table_records
+    %div#forms_div

@@ -1,7 +1,7 @@
 %h3 Add columns to the table: #{params[:table_id]} in database: [#{params[:database_id]}]
 %fieldset
   %legend Add new column
-  =form_tag(database_table_columns_path) do
+  =form_tag(database_table_columns_path, remote: true) do
     %p
       =render(partial: 'shared/column_form')
     %div.submit

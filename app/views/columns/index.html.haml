@@ -11,6 +11,15 @@
       %th Actions:
   %tbody
     = render partial: 'shared/describe', collection: @describe
-%h3.action
-  =link_to(image_tag('add.png'), new_database_table_column_path)
-  =link_to "Add column", new_database_table_column_path
+    %tr
+      %td
+        =link_to(image_tag('add.png'), new_database_table_column_path, remote: true)
+        =link_to "Add column", new_database_table_column_path, remote: true
+      %td
+      %td
+      %td
+      %td
+      %td
+      %td
+  
+  

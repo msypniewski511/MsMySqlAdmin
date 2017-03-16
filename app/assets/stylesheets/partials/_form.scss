@@ -28,16 +28,16 @@ fieldset {
       margin-left: 10px;
       border-radius: 3px;
     }
-  }
-  div.field {    
-      border-bottom: 1px solid blue;
+    input[type="submit"]{
+      color: purple;
+      background-color: #0099CC;
+      @include gradient(#33FF99, $darker-color-header);
+      border-color: #0099CC;
+      border-radius: 5px;
+    }
   }
   div.submit {
     width: 200px;
     text-align: right;
-    color: blue;
-    button {
-      background-color: blue;
-    }
   }
 }

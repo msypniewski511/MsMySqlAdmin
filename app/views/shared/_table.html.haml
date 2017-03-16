@@ -2,10 +2,10 @@
   %td
     /= link_to "#{table.values[0].to_s}", database_table_path(id: table.values[0].to_s})
     /= link_to("Delete", database_table_path(id: "#{table.values[0].to_s}"))
-    =link_to("#{table.values[0].to_s}", database_table_path(id: "#{table.values[0].to_s}"))
+    =link_to("#{table.values[0].to_s}", database_table_columns_path(table_id: "#{table.values[0].to_s}"), remote: true)
   %td
-    =link_to(image_tag('stock-eye-20.png'), show_records_database_table_path(id: "#{table.values[0].to_s}"))
-    =link_to(image_tag('stock-edit-16'))
-    =link_to(image_tag('delete.png'), database_table_path(id: "#{table.values[0].to_s}"), method: :delete, data: {confirm: "Are you sure ?"})
+    =link_to(image_tag('stock-eye-20.png'), show_records_database_table_path(id: "#{table.values[0].to_s}"), remote: true)
+    =link_to(image_tag('stock-edit-16'), edit_database_table_path(id: "#{table.values[0].to_s}"), remote: true)
+    =link_to(image_tag('delete.png'), database_table_path(id: "#{table.values[0].to_s}"), method: :delete, data: {confirm: "Are you sure to drop table: #{table.values[0].to_s} ?"}, remote: true)
 
     
