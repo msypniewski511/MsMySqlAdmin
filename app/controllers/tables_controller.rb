@@ -7,12 +7,7 @@ class TablesController < ApplicationController
   def index
     begin
   	  @database_name = params[:database_id]
-  	  sql = 'SHOW TABLES'
-  	  @tables_list = @baza.query(sql)
-    respond_to do |format|
-        format.html { }
-        format.js { render :index }
-    end
+  	  show_tables
   	rescue Mysql2::Error => e
   	  redirect_to :databases, notice: "#{e.to_s}"
   	end
@@ -46,7 +41,8 @@ class TablesController < ApplicationController
         format.js { render :edit }
       end
     rescue Mysql2::Error => e
-      redirect_to :database_tables_path
+      flash[:notice] = "#{e.to_s}"
+      show_tables
     end
   end
 
@@ -56,45 +52,39 @@ class TablesController < ApplicationController
   	begin
   	  sql = "CREATE TABLE #{params[:name].to_s} (#{params[:field].to_s} #{params[:type].to_s})"
   	  @baza.query(sql)
-      respond_to do |format|
-        format.js{render :index}
-        sql = 'SHOW TABLES'
-        @tables_list = @baza.query(sql)
-        ActionCable.server.broadcast 'tables', html: render_to_string('tables/index', layout: false)
-      end
+      flash.noe[:notice] = "Table #{params[:name].to_s} was created"
+      show_tables
   	  #redirect_to :database_tables, notice: "New table #{params[:name].to_s} was created"
   	rescue Mysql2::Error => e
-  	  redirect_to :database_tables, notice: "#{e.to_s}"
+  	  flash.now[:notice] = "#{e.to_s}"
+      show_tables
   	end
   end
 
+  # PUT /databases/:database_id/tables/:id
+  # Rename table
   def update
     begin
       sql = "ALTER TABLE #{params[:id].to_s} RENAME #{params[:new_name].to_s}"
       @baza.query(sql)
-      respond_to do |format|
-        format.js{render :index}
-        sql = 'SHOW TABLES'
-        @tables_list = @baza.query(sql)
-        ActionCable.server.broadcast 'tables', html: render_to_string('tables/index', layout: false)
-      end
+      flash.now[:notice] = "Table #{params[:id].to_s} was renamed to #{params[:new_name].to_s}"
+      show_tables
     rescue Mysql2::Error => e
-      redirect_to :database_tables, notice: "#{e.to_s}"
+      flash.now[:notice] = "#{e.to_s}"
+      show_tables
     end
   end
+
   # DELETE /databases/:database_id/tables/:id
   # Delete table in particular database.
   def destroy
   	begin
   	  sql = "DROP TABLE #{params[:id]}"
   	  @baza.query(sql)
-      sql = 'SHOW TABLES'
-      @tables_list = @baza.query(sql)
-      respond_to do |format|
-        format.js { render :index}
-      end
+      show_tables
   	rescue Mysql2::Error => e
-  	  redirect_to :database_tables, notice: "#{e.to_s}"
+  	  flash.now[:notice] = "#{e.to_s}"
+      show_tables
   	end
   end
 
@@ -108,8 +98,20 @@ class TablesController < ApplicationController
         format.js { render :show_records }
       end
   	rescue Mysql2::Error => e
-  	  redirect_to :database_tables, notice: "#{e.to_s}"
+  	  flash[:notice] = "#{e.to_s}"
+      show_tables
   	end
   end
 
+  private
+
+  # render index template with broadcasting changes
+  def show_tables
+    respond_to do |format|
+      sql = 'SHOW TABLES'
+      @tables_list = @baza.query(sql)
+      format.js{render :index}
+      ActionCable.server.broadcast 'tables', html: render_to_string('tables/index', layout: false)
+    end
+  end
 end

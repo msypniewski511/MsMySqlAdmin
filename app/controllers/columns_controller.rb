@@ -1,24 +1,24 @@
 class ColumnsController < ApplicationController
-  before_action :use_database, except: [:new, :new_column]
-  after_action :close_database, except: [:new, :new_column]
+  before_action :use_database, except: [:new]
+  after_action :close_database, except: [:new]
 
   # GET /databases/:database_id/tables/:table_id/columns
+  # List columns in particular table
   def index
-  	sql = "DESCRIBE #{params[:table_id].to_s}"
-  	@describe = @baza.query(sql)
-    respond_to do |format|
-        format.html { }
-        format.js { render :index }
-    end
+  	my_redirect
   end
 
   # GET /databases/:database_id/tables/:table_id/columns/:id
+  # Show list attributes of column
   def show
-  	sql = "SHOW COLUMNS FROM #{params[:table_id]} FROM #{params[:database_id]} LIKE '#{params[:id]}'"
-  	@column = @baza.query(sql)
-    respond_to do |format|
+    begin
+  	  show_column
+      respond_to do |format|
         format.html { }
         format.js { render :show }
+      end
+    rescue Mysql2::error => e
+      my_redirect
     end
   end
 
@@ -35,13 +35,13 @@ class ColumnsController < ApplicationController
   # Create form for edit column.
   def edit
   	begin
-  	  sql = "SHOW COLUMNS FROM #{params[:table_id]} FROM #{params[:database_id]} LIKE '#{params[:id]}'"
-  	  @column = @baza.query(sql)
+  	  show_column
       respond_to do |format|
         format.js{render :edit}
       end
   	rescue Mysql2::Error => e
-  	  redirect_to :database_table_columns, notice: "#{e.to_s}"
+  	  flash.now[:notice] = "#{e.to_s}"
+      my_redirect
   	end
   end
 
@@ -52,12 +52,8 @@ class ColumnsController < ApplicationController
   	  parameters = column_attribute
   	  sql = "ALTER TABLE #{params[:table_id]} ADD COLUMN #{parameters}"
   	  @baza.query(sql)
-      respond_to do |format|
-        sql = "DESCRIBE #{params[:table_id].to_s}"
-        @describe = @baza.query(sql)
-        format.html {}
-        format.js {render :index}
-      end
+      flash[:notice] = "Column: #{parameters[params[:field]].to_s} added successfuly!"
+      my_redirect
   	  #redirect_to :database_table_columns, notice: "Column added successfuly!"
   	rescue Mysql2::Error => e
   	  redirect_to :new_database_table_column, notice: "#{e.to_s}"
@@ -70,9 +66,15 @@ class ColumnsController < ApplicationController
   	  parameters = column_attribute
   	  sql = "ALTER TABLE #{params[:table_id]} CHANGE #{params[:id]} #{params[:field]} #{params[:type]} #{params[:key]} #{params[:null]} #{params[:extra]}"
   	  @baza.query(sql)
-  	  redirect_to :database_table_columns, notice: "Column added successfuly!"
+  	  
+      my_redirect
   	rescue Mysql2::Error => e
-  	  redirect_to :edit_database_table_column, notice: "#{e.to_s}"
+      show_column
+      flash.now[:error] = "#{e.to_s}"
+      respond_to do |format|
+        format.js {render :edit}
+      end
+  	  #redirect_to :edit_database_table_column, notice: "#{e.to_s}"
   	end  	
   end
 
@@ -81,24 +83,30 @@ class ColumnsController < ApplicationController
   	begin
   	  sql = "ALTER TABLE #{params[:table_id]} DROP COLUMN #{params[:id]}"
   	  @baza.query(sql)
-      sql = "DESCRIBE #{params[:table_id].to_s}"
-      @describe = @baza.query(sql)
       flash.now[:notice] = "Column #{params[:id]} was deleted"
       my_redirect
   	rescue Mysql2::Error => e
   	  flash.now[:notice] = "#{e.to_s}"
       my_redirect
   	end
-  end
+  end#return index
 
   private
+
+  # Redirect to index template to list columns in table
   def my_redirect
+    sql = "DESCRIBE #{params[:table_id].to_s}"
+    @describe = @baza.query(sql)
     respond_to do |format|
-      sql = "DESCRIBE #{params[:table_id].to_s}"
-      @describe = @baza.query(sql)
       format.html {}
       format.js {render :index}
     end
+  end
+
+  # Return instance variable with attributes and values
+  def show_column
+    sql = "SHOW COLUMNS FROM #{params[:table_id]} FROM #{params[:database_id]} LIKE '#{params[:id]}'"
+    @column = @baza.query(sql)
   end
 
   def column_attribute

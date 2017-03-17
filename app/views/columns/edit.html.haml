@@ -1,7 +1,7 @@
 %h3 Column: [#{params[:id]}] of table: [#{params[:table_id]}] in database: [#{params[:database_id]}]
 %fieldset
   %legend Edit column: #{params[:id]}
-  =form_tag(database_table_column_path, method: :put) do
+  =form_tag(database_table_column_path, method: :put, remote: true) do
     .field
       =label_tag :field
       =text_field_tag :field, get_key_value(@column)[0]
@@ -22,5 +22,5 @@
       =text_field_tag :extra, get_key_value(@column)[5]
     .submit
       =submit_tag
-=link_to(image_tag('delete.png'), database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"})
+=link_to(image_tag('delete.png'), database_table_column_path(id: "#{params[:id]}"), method: :delete, data:{confirm: "Are you sure to delete column: " + "#{params[:id]}" + "?"}, remote: true)
 =link_to "Back", database_table_columns_path
