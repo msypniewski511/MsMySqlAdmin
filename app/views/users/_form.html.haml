@@ -5,12 +5,16 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :password
-    = f.text_field :password
-  .actions
-    = f.submit 'Save'
+  %fieldset
+    %legend Enter user details
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :password
+      = f.password_field :password
+    .field
+      = f.label :password_confirmation, 'Confirm'
+      = f.password_field :password_confirmation
+    .submit
+      = f.submit 'Save'
