@@ -19,6 +19,10 @@
             %a{href: "#"} JavaScript
           %li
             =link_to "MsMySqlAdmin", databases_path
+          %li.log
+            = link_to "Login", login_path
+          %li.log
+            = link_to 'Logout', logout_path, method: :delete
     = yield
     / Main site footer
     %footer#site_footer

@@ -34,7 +34,14 @@ header, footer {
       background-color: black;
       color: red;
     }
+    li.log {
+      display: block;
+      float: right;
+      width: 100px;
+      background-color: #009966;
+    }
   }
+
   a {
     color: #CCFFFF;
   }

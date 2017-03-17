@@ -1,2 +1,15 @@
-%h1 Sessions#new
-%p Find me in app/views/sessions/new.html.haml
+- if flash[:alert]
+  %p.notice
+    = flash[:alert]
+= form_tag do
+  %fieldset
+    %legend Please Log In
+    .field
+      = label_tag :name, 'Name:'
+      =text_field_tag :name, params[:name]
+    .field
+      = label_tag :password, 'Password:'
+      = password_field_tag :password, params[:password]
+    .submit
+      = submit_tag "Login"
+
