@@ -66,11 +66,11 @@ class ColumnsController < ApplicationController
   	  parameters = column_attribute
   	  sql = "ALTER TABLE #{params[:table_id]} CHANGE #{params[:id]} #{params[:field]} #{params[:type]} #{params[:key]} #{params[:null]} #{params[:extra]}"
   	  @baza.query(sql)
-  	  
+  	  flash.now[:notice] = "Changes was successfuly saved"
       my_redirect
   	rescue Mysql2::Error => e
       show_column
-      flash.now[:error] = "#{e.to_s}"
+      flash.now[:notice] = "#{e.to_s}"
       respond_to do |format|
         format.js {render :edit}
       end

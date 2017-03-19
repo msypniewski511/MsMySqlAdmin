@@ -7,6 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body{id: "#{params[:controller]}"}
+      
     / Begining of site header
     %header#site_header
       / Site navigation panel
@@ -19,10 +20,13 @@
             %a{href: "#"} JavaScript
           %li
             =link_to "MsMySqlAdmin", databases_path
-          %li.log
-            = link_to "Login", login_path
-          %li.log
-            = link_to 'Logout', logout_path, method: :delete
+          - if(session[:user_id])
+            %li.log
+              = link_to 'Logout', logout_path, method: :delete
+          - else
+            %li.log
+              = link_to "Login", login_path
+    
     = yield
     / Main site footer
     %footer#site_footer

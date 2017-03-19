@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authorize, only: [:destroy]
   # GET /users
   # GET /users.json
   # Get list of users ordered by name

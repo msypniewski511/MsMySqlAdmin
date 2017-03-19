@@ -52,7 +52,7 @@ class TablesController < ApplicationController
   	begin
   	  sql = "CREATE TABLE #{params[:name].to_s} (#{params[:field].to_s} #{params[:type].to_s})"
   	  @baza.query(sql)
-      flash.noe[:notice] = "Table #{params[:name].to_s} was created"
+      flash.now[:notice] = "Table #{params[:name].to_s} was created"
       show_tables
   	  #redirect_to :database_tables, notice: "New table #{params[:name].to_s} was created"
   	rescue Mysql2::Error => e

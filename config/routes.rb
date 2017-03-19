@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   resources :databases, except: [:update, :edit] do
   	collection do
   	  get 'server_info'
+      post 'server_details'
+      get 'change_server'
+      post 'change_server'
   	end
     resources :tables do
       member do

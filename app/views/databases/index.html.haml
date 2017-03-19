@@ -9,36 +9,56 @@
     %div#table_description
     %div#table_records
     %div#forms_div
-
-/Side bar
 %section#side_bar
-  %h3.info
-    =image_tag('info.png')
-    = "Mysql info:"
-  - @version.each do |t|
-    = "Wersja: " + t.values[0].to_s
-  %br
-  - @user.each do |user_date|
-    = "Uzytkownik: " + user_date.values[0].to_s
-  %br
-  - @date.each do |data|
-    = "Data on serv: " + data.values.to_s
-  %br
-  -@teraz.each do |t|
-    =t.values[0].to_s
-  %hr
-  %h3#lista_baz
-    .up
-      =image_tag("buttonDown_On.png", title: "open list")
-      Databases list:
-    .down
-      =image_tag("buttonUp_On.png", title: "close list")
-      Databases list:
-  .databases_list
-    %ul
-      =render(partial: 'database', collection: @databases_list)
-  %hr
-  %h3.action
-    =link_to(image_tag('add.png'), new_database_path, remote: true)
-    =link_to "Nowa baza danych", new_database_path, remote: true
+  - unless(session[:status_connection] == "ok") then
+    = @pas
+    = session[:status_connection]
+    %fieldset.serv
+      %legend 
+        Enter MySQL connection info:
+      = form_tag("/databases/server_details", method: 'post') do
+        .field
+          =label_tag :host, "Host:"
+          =text_field_tag :host, 'localhost'
+        .field
+          =label_tag :user_server, "User:"
+          =text_field_tag :user_server
+        .field
+          =label_tag :password, "Password:"
+          =password_field_tag :password
+        .submit
+          =submit_tag("Connect")
+  - if(session[:status_connection] == "ok") then
+    %h3.info
+      =image_tag('info.png')
+      Mysql server info:
+    #info
+      = "Host: " + "#{session[:host]}"
+      %br
+      = "User: " + get_info(@user)
+      %br
+      = "Date: " + get_info(@date)
+      %br
+      = "Ver: " + get_info(@version)
+      %br
+      = "Time now: " + get_info(@teraz)
+    %hr
+    %h3.action 
+      =link_to(image_tag('options-icon.png'), change_server_databases_path)
+      =link_to "Change MySQL server", change_server_databases_path
+    %hr
+    %h3#lista_baz
+      .up
+        =image_tag("buttonDown_On.png", title: "open list")
+        Databases list:
+      .down
+        =image_tag("buttonUp_On.png", title: "close list")
+        Databases list:
+    .databases_list
+      %ul
+        =render(partial: 'database', collection: @databases_list)
+    %hr
+    %h3.action
+      =link_to(image_tag('add.png'), new_database_path, remote: true)
+      =link_to "Nowa baza danych", new_database_path, remote: true
   

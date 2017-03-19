@@ -1,3 +1,4 @@
+= session[:status_connection_info]
 /Main contenet
 %section#main_content
   /Article
@@ -35,6 +36,17 @@
       To connect from remote:
       %span.additional_color
         mysql -h 192.168.1.3 -u user -p
-    %div#table_description
-    %div#table_records
-    %div#forms_div
+  %article.main_content
+    %header.main_content_header
+      %h2 Access webrick/rails from another computer on local network.
+    %p 
+      After making sure your server side firewall is open to the incoming connection on high ports (this is normally true and the default port is 3000, so you probably don't have to do anything) you must also start the server like this:
+      %br
+      %span.additional_color rails server -b 0.0.0.0
+      which binds it to the universal address. It binds to localhost by default.
+      Using this method you don't have to bind to port 80, but you can like this:
+      %br
+      %span.additional_color rails server -b 0.0.0.0 -p 80
+
+
+

@@ -1,0 +1,20 @@
+-if(session[:status] == "ok") then
+  %section#side_bar
+    %h3.info
+
+    %hr
+    %h3#lista_baz
+      .up
+        =image_tag("buttonDown_On.png", title: "open list")
+        Databases list:
+      .down
+        =image_tag("buttonUp_On.png", title: "close list")
+        Databases list:
+      .databases_list
+        %ul
+          =render(partial: 'database', collection: @databases_list)
+    %hr
+    %h3.action
+      =link_to(image_tag('add.png'), new_database_path, remote: true)
+      =link_to "Nowa baza danych", new_database_path, remote: true
+  

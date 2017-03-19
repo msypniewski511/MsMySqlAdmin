@@ -1,6 +1,19 @@
 class DatabasesController < ApplicationController
-  after_action :close_connection, expect:[:show, :new]
-  before_action :set_connection, expect: [:show, :new]
+  after_action :close_connection, expect: [:show, :new, :index]
+  skip_after_action :close_connection, only: :index
+  before_action :set_connection, expect: [:show, :new, :index, :server_details]
+  skip_before_action :set_connection, only: :index
+
+  def change_server
+    session[:status_connection] = nil
+    render :index
+  end
+
+  def server_details
+    set_session_parameters
+    set_connection
+    redirect_to :databases
+  end
 
   #GET /databases/server_info
   # information about server
@@ -19,10 +32,20 @@ class DatabasesController < ApplicationController
   # GET /databases
   # Get basic server info and databases list.
   def index
-  	begin
-      server_info
-      @databases_list = @client.query('SHOW DATABASES')
-    rescue Msql2::Error => e
+    if(session[:password] != nil)then
+      @pas = session[:password]
+    else
+      @pas = "brak hasla"
+    end
+    
+    if(session[:status_connection] == "ok") then
+  	  begin
+        set_connection
+        server_info
+        @databases_list = @client.query('SHOW DATABASES')
+      rescue
+        render :index
+      end
     end
   end
 
@@ -71,5 +94,9 @@ class DatabasesController < ApplicationController
   end
 
   private
-
+  def set_session_parameters
+    session[:host] = params[:host]
+    session[:user_server] = params[:user_server]
+    session[:password] = params[:password]
+  end
 end

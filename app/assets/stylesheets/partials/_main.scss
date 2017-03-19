@@ -64,12 +64,17 @@ h3 {
   margin: 5px 0 5px 0;
   font-weight: bolder;
 }
-h3.action a{
+h3.action a, h3#lista_baz {
   color: white;
 }
-h3.form {
+h3.form, #info {
   @include gradient(#33FF99, $darker-color-header);
 }
+#info {
+  border-radius: 5px;
+  padding: 5px 0 0 5px;
+}
+
 span.table_name {
   color: red;
 }
